@@ -18,10 +18,8 @@ router.post('/add', (req, res) => {
   const article = new Article(req.body);
 
   article.save((err) => {
-    if (err) res.send(err)
-    res.json({
-      "message" : "New article successcully added"
-    });
+    if (err) res.redirect('http://localhost:3000/')
+    res.redirect('http://localhost:3000/')
   });
 });
 // home/:id/update
@@ -40,9 +38,7 @@ router.post('/:id/update', (req, res) => {
 router.get('/:id/delete', (req, res) => {
   Article.findByIdAndRemove(req.params.id, err => {
     if(err) res.send(err)
-    res.json({
-      "message" : "Article has been successcully removed"
-    });
+    res.redirect('http://localhost:3000/')
   });
 });
 

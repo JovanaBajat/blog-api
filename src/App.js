@@ -1,19 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import request from 'request';
 import './App.css';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Display from './components/Display';
+import Form from './components/Form';
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles : []
+    };
+  }
+
+  componentDidMount(){
+    request("http://localhost:8080/home", (err, res, body) => {
+      if(err){
+        console.log(err);
+      }
+      this.setState({
+        articles : JSON.parse(body)
+      });
+      console.log(this.state.articles)
+    })
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <h1>Welcome to my blog</h1>
+          <Display articles={this.state.articles}/>
+          <Form />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

@@ -1,4 +1,4 @@
-.App {
+/*.App {
   text-align: center;
 }
 
@@ -20,8 +20,35 @@
 
 .App-intro {
   font-size: large;
+}*/
+body {
+  background-image: url('./assets/wall.jpg');
 }
-
+ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+li {
+  border: 1px solid black;
+  width: 25%;
+  padding: 30px;
+  margin: 20px;
+  list-style-type: none;
+  cursor: pointer;
+  overflow: hidden;
+  text-align: center;
+}
+a{
+color: black;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+.title {
+  font-size: 28px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
