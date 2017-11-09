@@ -8,6 +8,7 @@ import router from './router/router';
 
 const app = express();
 
+mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoUrl, () => {
   console.log("Database is now connected")
 });

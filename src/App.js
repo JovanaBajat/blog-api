@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import request from 'request';
 import './App.css';
 
@@ -10,18 +10,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      articles : []
+      articles: []
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     request("http://localhost:8080/home", (err, res, body) => {
-      if(err){
+      if (err) {
         console.log(err);
       }
-      this.setState({
-        articles : JSON.parse(body)
-      });
+      this.setState({articles: JSON.parse(body)});
       console.log(this.state.articles)
     })
   }
@@ -29,8 +27,8 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div>
-          <h1>Welcome to my blog</h1>
-          <Display articles={this.state.articles}/>
+          <h1 className="mainTitle">Welcome to my blog about caca!</h1>
+          <Display articles={this.state.articles} />
           <Form />
         </div>
       </MuiThemeProvider>

@@ -18,8 +18,9 @@ router.post('/add', (req, res) => {
   const article = new Article(req.body);
 
   article.save((err) => {
-    if (err) res.redirect('http://localhost:3000/')
-    res.redirect('http://localhost:3000/')
+    if (err) return res.redirect('http://localhost:3000/')  
+   res.redirect('http://localhost:3000/')
+
   });
 });
 // home/:id/update

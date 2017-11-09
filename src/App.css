@@ -22,32 +22,76 @@
   font-size: large;
 }*/
 body {
-  background-image: url('./assets/wall.jpg');
+  background-image: url('./assets/nyc1.jpg');
+  background-repeat: no-repeat;
+
+}
+.mainTitle, .selection {
+  text-align: center;
 }
 ul{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
-li {
+.mainList {
   border: 1px solid black;
+  border-radius: 7px;
   width: 25%;
-  padding: 30px;
+  height: 13rem;
+  padding: 30px 20px;
   margin: 20px;
   list-style-type: none;
-  cursor: pointer;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   text-align: center;
+  background-color: rgba(192,192,192,0.7);
 }
 a{
 color: black;
 }
+a:hover {
+  text-decoration: none;
+}
 .buttons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: baseline;
 }
 .title {
-  font-size: 28px;
+  font-size: 25px;
+}
+.material-icons {
+  cursor: pointer;
+}
+.formulaire {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+
+}
+.urStory {
+  margin: 20px;
+}
+
+.dialogBody {
+  text-align: center;
+}
+.dialogTitle {
+  margin-bottom: 30px;
+}
+.dialogText {
+  text-align: justify;
+}
+.dialogAuthor {
+  text-align: right;
+}
+.buttonsLikeDeleteClose {
+  text-align: right;
+}
+.heart:hover {
+  /*color: red;*/
 }
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

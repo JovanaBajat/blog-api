@@ -4,7 +4,8 @@ const article = new mongoose.Schema({
   title : {type : String, required : true},
   text : {type : String, required : true},
   author : {type : String, required : true}
-  // date : {type : Date, default : Date.now}
+  // date : {type : String, default : moment().format('YYYY-MM-DD, h:mm a')
+// }
 },
 {
   versionKey : false
