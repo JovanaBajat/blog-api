@@ -1,7 +1,20 @@
 import express from 'express';
 import Article from '../model/article';
+import multer from 'multer';
+import fs from 'fs';
 
 const router = express.Router();
+
+const storage = multer.diskStorage({
+  destination: (req, fille, cb)=> {
+    cb(null, '../public/my_uploads')
+  },
+  filename:  (req, file, cb) => {
+    cb (null, file.originalname);
+  }
+});
+
+const upload = multer({ storage : storage})
 
 // home
 
@@ -14,11 +27,13 @@ router.get('/', (req, res) => {
 
 // home/add
 
-router.post('/add', (req, res) => {
-  const article = new Article(req.body);
-
+router.post('/add', upload.single('photo'), (req, res) => {
+  let article = new Article(req.body);
+  if (req.file) {
+    article.photo = `${req.file.filename}`;
+  }
   article.save((err) => {
-    if (err) return res.redirect('http://localhost:3000/')  
+    if (err) return res.redirect('http://localhost:3000/')
    res.redirect('http://localhost:3000/')
 
   });
@@ -37,9 +52,11 @@ router.post('/:id/update', (req, res) => {
 // home/:id/delete
 
 router.get('/:id/delete', (req, res) => {
-  Article.findByIdAndRemove(req.params.id, err => {
-    if(err) res.send(err)
-    res.redirect('http://localhost:3000/')
+  Article.findOne({ _id: req.params.id }, (err, article) => { //find id of the article
+    if(article.photo) {//check if there is a photo
+      fs.unlinkSync(`../public/my_uploads/${article.photo}`) //if yes than remove photo
+    }
+    Article.remove(article, err => err ? res.send(err) : res.redirect('http://localhost:3000/')); // remove article
   });
 });
 

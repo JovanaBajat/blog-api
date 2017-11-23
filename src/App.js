@@ -27,9 +27,9 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div>
-          <h1 className="mainTitle">Welcome to my blog about caca!</h1>
+          <h1 className="mainTitle">Welcome to my blog about React!</h1>
           <Display articles={this.state.articles} />
-          <Form />
+          <Form action={'http://localhost:8080/home/add'}/>
         </div>
       </MuiThemeProvider>
     );
